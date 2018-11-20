@@ -101,10 +101,10 @@ In order to have an insight of the most frequent words in the corpus, we can plo
 **Description:**
 Plot a word cloud.
 
-**Usage:**  
+**Usage:**
 wordcloud(words, freq, scale=c(4,.5), min.freq=3, max.words=Inf, random.order=TRUE, random.color=FALSE, rot.per=.1, colors="black", ordered.colors=FALSE, use.r.layout=FALSE, fixed.asp=TRUE, ...)
 
-**Arguments:**  
+**Arguments:**
 
 - **words** the words
 - **freq** their frequencies
@@ -129,7 +129,7 @@ corpus_dtm <- DocumentTermMatrix(corpus)
 corpus_matrix <- as.matrix(corpus_dtm)
 v <- sort(colSums(corpus_matrix),decreasing = TRUE)
 corpus_for_wc2<-data.frame(word=names(v),freq=v)
-my_graph_1 <- wordcloud2(corpus_for_wc2, color="random-dark", size=3, shape="circle", backgroundColor="white") 
+my_graph_1 <- wordcloud2(corpus_for_wc2, color="random-dark", size=3, shape="circle", backgroundColor="white")
 saveWidget(my_graph_1, "tmp.html", selfcontained = F)
 webshot("tmp.html", "my_graph_1.png", delay = 5)
 ```
@@ -199,7 +199,7 @@ corpus_contraction_fixed[[4]]$content
 ```{r}
 fix.diacritics <- function(doc) {
   diacritics = list('Š'='S', 'š'='s', 'Ž'='Z', 'ž'='z', 'À'='A', 'Á'='A', 'Â'='A', 'Ã'='A', 'Ä'='A', 'Å'='A', 'Æ'='A', 'Ç'='C', 'È'='E', 'É'='E', 'Ê'='E', 'Ë'='E', 'Ì'='I', 'Í'='I', 'Î'='I', 'Ï'='I', 'Ñ'='N', 'Ò'='O', 'Ó'='O', 'Ô'='O', 'Õ'='O', 'Ö'='O', 'Ø'='O', 'Ù'='U', 'Ú'='U', 'Û'='U', 'Ü'='U', 'Ý'='Y', 'Þ'='B', 'ß'='Ss', 'à'='a', 'á'='a', 'â'='a', 'ã'='a', 'ä'='a', 'å'='a', 'æ'='a', 'ç'='c', 'è'='e', 'é'='e', 'ê'='e', 'ë'='e', 'ì'='i', 'í'='i', 'î'='i', 'ï'='i', 'ð'='o', 'ñ'='n', 'ò'='o', 'ó'='o', 'ô'='o', 'õ'='o', 'ö'='o', 'ø'='o', 'ù'='u', 'ú'='u', 'û'='u', 'ý'='y', 'ý'='y', 'þ'='b', 'ÿ'='y')
-  
+
   doc$content <- chartr(paste(names(diacritics), collapse=''), paste(diacritics, collapse=''), doc$content)
   return(doc)
 }
@@ -255,12 +255,10 @@ corpus_normalized[[1]]$content
 
 ```
 
-
 ```{r}
 # Remove unnecessary white spaces
 
 ```
-
 
 ### 1.3.5 - Stemming
 
@@ -360,7 +358,7 @@ webshot("tmp.html", "my_graph_3.png", delay = 5)
 ```
 <!-- ![](my_graph_3.png) -->
 
-## 2.3 - N-gram TF Representation
+## 2.3 - Bigram TF Representation
 ```{r}
 # There is no Bigram Tokenizer in tm, so we create one
 BigramTokenizer <- function(x) {
@@ -388,7 +386,7 @@ webshot("tmp.html", "bigram_tf_matrix_wc.png", delay = 5)
 
 **HINT**: Pass `control = list(weighting = function(x) weightTfIdf(x, normalize = FALSE))` as argument to `DocumentTermMatrix` function.
 
-## 2.5 - N-gram TF-IDF Representation
+## 2.5 - Bigram TF-IDF Representation
 
 <h4 style="color:red">EXERCISE</h4>
 
@@ -435,12 +433,3 @@ webshot("tmp.html", "my_graph_5.png", delay = 5)
 ## 3.4 - Terms reduction Bigram TF-IDF
 
 <h4 style="color:red">EXERCISE</h4>
-
-
-
-
-
-
-
-
-
