@@ -11,27 +11,42 @@ editor_options:
 # Part 0 - Packages & Dataset
 ## 0.1 - Install packages
 ```{r}
-# install.packages("tm")
-# install.packages("StandardizeText")
-# install.packages("SnowballC")
-# install.packages("wordcloud")
-# install.packages("wordcloud2")
-# install.packages("tidytext")
-# install.packages("webshot")
-# library(webshot)
-# install_phantomjs()
+# List of packages needed for this tutorial
+list.of.packages <- c(
+    "tm",
+    "StandardizeText",
+    "SnowballC",
+    "wordcloud",
+    "wordcloud2",
+    "tidytext",
+    "webshot"
+)
+
+# Check which packages have not been installed yet
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+
+# If there are some packages that have not been installed yet, install them
+if (length(new.packages)) {
+    install.packages(new.packages)
+}
 ```
 ## 0.2 - Import packages
 ```{r}
-library(NLP) # https://cran.r-project.org/web/packages/NLP/NLP.pdf
-library(tm) # https://cran.r-project.org/web/packages/tm/tm.pdf
+# Import packages
+library(NLP)  # https://cran.r-project.org/web/packages/NLP/NLP.pdf
+library(tm)  # https://cran.r-project.org/web/packages/tm/tm.pdf
 library(SnowballC)
 library(RColorBrewer)
-library(wordcloud) # https://cran.r-project.org/web/packages/wordcloud/wordcloud.pdf
+library(wordcloud)  # https://cran.r-project.org/web/packages/wordcloud/wordcloud.pdf
 library(wordcloud2)
 library(tidytext)
 library(webshot)
 library(htmlwidgets)
+
+# Install phantomjs if not already installed
+if (is.null(webshot:::find_phantom())){
+  install_phantomjs()
+}
 ```
 ## 0.3 - Load dataset
 ```{r}
